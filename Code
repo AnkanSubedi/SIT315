@@ -1,0 +1,26 @@
+int sensorOutput = A2;  
+int sensorInput;    
+double temp;  
+
+void setup()
+{
+  pinMode(4, OUTPUT);
+  Serial.begin(9600);                      
+}
+
+void loop()
+{
+  sensorInput = analogRead(A2);    
+  temp = (double)sensorInput / 1024;       
+  temp = (((temp * 5)-0.5)*100);                              
+ 
+  Serial.print("Temp: ");
+  Serial.println(temp); 
+  
+  if(temp>30){
+    digitalWrite(4,HIGH);
+    delay(500);
+    digitalWrite(4,LOW);
+    delay(500);
+  }
+}
